@@ -27,17 +27,20 @@ public class ObjectMrg : MonoBehaviour {
         for(int i=0; i < SHIP_MAX; i++) {
             for(int f=0; f < SHIP_MAX; f++) {
                 if(i==f) continue; //同じものは処理しない
-
-                //距離
-                Vector2 vec = ships[f].localPosition - ships[i].localPosition;
-                float dis_sqrt = (vec.x * vec.x + vec.y * vec.y); //処理(sqrt)
-
                 ObjectCollider ocI = ships[i].GetComponent<ObjectCollider>();
                 ObjectCollider ocF = ships[f].GetComponent<ObjectCollider>();
+                if(!ocI.isEnabled || !ocF.isEnabled) continue; //使用されていないものは処理しない
+
+                Debug.Log("["+i+","+f+"]:------------------------------------------------");
+                //距離
+                Vector3 vec = ships[f].position - ships[i].position;
+                float dis_sqrt = (vec.x * vec.x + vec.y * vec.y + vec.z * vec.z); //処理(sqrt)
                 if(dis_sqrt  < (ocI.getAttackRange + ocF.getDefenseRange) * (ocI.getAttackRange + ocF.getDefenseRange)) {
                     //勝敗判定
                     int val = ocF.getPower - ocI.getPower;
-                    Debug.Log("["+i+","+f+"]:hi  i:"+ocI.getPower+" f;"+ocF.getPower+"\n " + val);
+                    Debug.Log("["+i+","+f+"]:hit i:"+ocI.getPower+" f;"+ocF.getPower+"\n " + val);
+                    Debug.Log("["+i+","+f+"]:vec:" + vec);
+                    Debug.Log("["+i+","+f+"]:dir:" + dis_sqrt + " < " + ((ocI.getAttackRange + ocF.getDefenseRange) * (ocI.getAttackRange + ocF.getDefenseRange)));
                     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -勝ち 
                     if(val < 0) {
                         Debug.Log("Win: " +  ocI.name);
@@ -60,6 +63,12 @@ public class ObjectMrg : MonoBehaviour {
                 }
             }
         }
-    }
 
+    }// end function Judge
+
+    public void Clear() {
+        for(int i=0; i < SHIP_MAX; i++) {
+            ships[i].GetComponent<ObjectCollider>().Clear();
+        }
+    }
 }

@@ -8,6 +8,7 @@ public class ObjectCollider : MonoBehaviour {
     [SerializeField] private float m_DefenseRange = 0.5f; //受け判定の半径
     
 
+    private Color    M_FAST_COLOR;
     private Renderer m_ChildRend; //子のレンダラー
 
 
@@ -16,14 +17,16 @@ public class ObjectCollider : MonoBehaviour {
     public int   setPower{ set{ m_power = value; } }
 
     public float getAttackRange { get{ return m_AttackRange;  } }  
-    public float getDefenseRange{ get{ return m_DefenseRange; } }  
+    public float getDefenseRange{ get{ return m_DefenseRange; } }
+
+    public bool  isEnabled{ get{ return m_ChildRend.enabled; } }
 
 	void Start () {
-	    m_ChildRend = transform.FindChild("Model").renderer;
+	    m_ChildRend  = transform.FindChild("Model").renderer;
+        M_FAST_COLOR = m_ChildRend.material.color;
 	}
 	
 	void Update () {
-	
 	}
 
     //勝利したときの処理
@@ -40,7 +43,11 @@ public class ObjectCollider : MonoBehaviour {
         m_ChildRend.material.color = Color.gray;
     }
 
+    public void Clear() {
+        m_ChildRend.material.color = M_FAST_COLOR;
+    }
 
+    /*
     void OnDrawGizmos() {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, m_AttackRange);
@@ -48,4 +55,5 @@ public class ObjectCollider : MonoBehaviour {
         Gizmos.DrawWireSphere(transform.position, m_DefenseRange);
     
     }
+    */
 }
