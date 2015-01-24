@@ -31,16 +31,16 @@ public class ObjectMrg : MonoBehaviour {
                 ObjectCollider ocF = ships[f].GetComponent<ObjectCollider>();
                 if(!ocI.isEnabled || !ocF.isEnabled) continue; //使用されていないものは処理しない
 
-                Debug.Log("["+i+","+f+"]:------------------------------------------------");
+                //Debug.Log("["+i+","+f+"]:------------------------------------------------");
                 //距離
                 Vector3 vec = ships[f].position - ships[i].position;
                 float dis_sqrt = (vec.x * vec.x + vec.y * vec.y + vec.z * vec.z); //処理(sqrt)
                 if(dis_sqrt  < (ocI.getAttackRange + ocF.getDefenseRange) * (ocI.getAttackRange + ocF.getDefenseRange)) {
                     //勝敗判定
                     int val = ocF.getPower - ocI.getPower;
-                    Debug.Log("["+i+","+f+"]:hit i:"+ocI.getPower+" f;"+ocF.getPower+"\n " + val);
-                    Debug.Log("["+i+","+f+"]:vec:" + vec);
-                    Debug.Log("["+i+","+f+"]:dir:" + dis_sqrt + " < " + ((ocI.getAttackRange + ocF.getDefenseRange) * (ocI.getAttackRange + ocF.getDefenseRange)));
+                    Debug.Log("["+i+","+f+"]:hit");
+                    //Debug.Log("["+i+","+f+"]:vec:" + vec);
+                    //Debug.Log("["+i+","+f+"]:dir:" + dis_sqrt + " < " + ((ocI.getAttackRange + ocF.getDefenseRange) * (ocI.getAttackRange + ocF.getDefenseRange)));
                     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -勝ち 
                     if(val < 0) {
                         Debug.Log("Win: " +  ocI.name);
