@@ -1,9 +1,8 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Inagaki_Coll/ObjectCollider.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/akasaka/ARCameraEx.cs">
     <Files>
-      <File FileName="Assets/gameUI/GameController.cs" Line="23" Column="1" />
-      <File FileName="Assets/Inagaki_Coll/ObjectCollider.cs" Line="12" Column="26" />
+      <File FileName="Assets/akasaka/ARCameraEx.cs" Line="16" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
