@@ -3,5 +3,6 @@
   <Tracking>
     <ImageTarget name="Maker01" size="100.000000 86.000000" />
     <ImageTarget name="Maker02" size="100.000000 96.000000" />
+    <ImageTarget name="Calibration" size="100.000000 100.000000" />
   </Tracking>
 </QCARConfig>
