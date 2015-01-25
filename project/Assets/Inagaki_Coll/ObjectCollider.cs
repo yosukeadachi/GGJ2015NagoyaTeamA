@@ -29,7 +29,7 @@ public class ObjectCollider : MonoBehaviour {
 
 	void Start () {
 	    m_ChildRend  = transform.FindChild("Model").renderer;
-        M_FAST_COLOR = m_ChildRend.material.color;
+        //M_FAST_COLOR = m_ChildRend.material.color;
 
         m_ChildPar_Att = transform.FindChild("Particle_Attack"  ).particleSystem;
         m_ChildPar_Def = transform.FindChild("Particle_Defense" ).particleSystem;
@@ -53,7 +53,7 @@ public class ObjectCollider : MonoBehaviour {
 
     //勝利したときの処理
     public void BattleWin() {
-        m_ChildRend.material.color = Color.yellow;
+        //m_ChildRend.material.color = Color.yellow;
 
         m_ChildPar_Att.Stop();
         m_ChildPar_Def.Stop();
@@ -63,7 +63,7 @@ public class ObjectCollider : MonoBehaviour {
     
     //負けたときの処理
     public void BattleLoss() {
-        m_ChildRend.material.color = Color.magenta;
+        //m_ChildRend.material.color = Color.magenta;
         
         m_ChildPar_Att.Stop();
         m_ChildPar_Def.Stop();
@@ -72,7 +72,7 @@ public class ObjectCollider : MonoBehaviour {
     }
     //相子のとき
     public void BattleDraw() {
-        m_ChildRend.material.color = Color.gray;
+        //m_ChildRend.material.color = Color.gray;
         
         m_ChildPar_Att.Stop();
         m_ChildPar_Def.Stop();
@@ -80,7 +80,7 @@ public class ObjectCollider : MonoBehaviour {
 
     //初期状態へ戻す
     public void Clear() {
-        m_ChildRend.material.color = M_FAST_COLOR;
+        //m_ChildRend.material.color = M_FAST_COLOR;
         
         m_ChildPar_Att.Play();
         m_ChildPar_Def.Play();
