@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <QCARConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="qcar_config.xsd">
   <Tracking>
-    <ImageTarget name="Maker6" size="100.000000 100.000000" />
-    <ImageTarget name="Maker5" size="100.000000 100.000000" />
-    <ImageTarget name="Maker4" size="100.000000 100.000000" />
-    <ImageTarget name="Maker3" size="100.000000 100.000000" />
-    <ImageTarget name="Maker2" size="100.000000 100.000000" />
-    <ImageTarget name="Maker1" size="100.000000 100.000000" />
-    <ImageTarget name="Test" size="100.000000 96.000000" />
     <ImageTarget name="UnityChan" size="100.000000 86.000000" />
+    <ImageTarget name="Marker2pRed" size="100.000000 100.000000" />
+    <ImageTarget name="Marker2pGreen" size="100.000000 100.000000" />
+    <ImageTarget name="Marker2pBlue" size="100.000000 100.000000" />
+    <ImageTarget name="Marker1pRed" size="100.000000 100.000000" />
+    <ImageTarget name="Marker1pGreen" size="100.000000 100.000000" />
+    <ImageTarget name="Marker1pBlue" size="100.000000 100.000000" />
   </Tracking>
 </QCARConfig>
