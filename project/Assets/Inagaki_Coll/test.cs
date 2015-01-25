@@ -12,7 +12,11 @@ public class test : MonoBehaviour {
 	void Update () {
 	    if(Input.GetKeyDown(KeyCode.A)) {
             a.GetComponent<ObjectMrg>().Judge();
-            Debug.Log("----------------------");
+            Debug.Log("Judge----------------------");
+        }
+        if(Input.GetKeyDown(KeyCode.S)) {
+            a.GetComponent<ObjectMrg>().Clear();
+            Debug.Log("Clear----------------------");
         }
 
 	}
