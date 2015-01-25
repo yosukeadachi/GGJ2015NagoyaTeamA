@@ -22,6 +22,7 @@ public class ObjectMrg : MonoBehaviour {
 	    
 	}
 
+    //ジャッジ=====================================================================================
     public void Judge() {
         //距離を図る
         for(int i=0; i < SHIP_MAX; i++) {
@@ -31,30 +32,36 @@ public class ObjectMrg : MonoBehaviour {
                 ObjectCollider ocF = ships[f].GetComponent<ObjectCollider>();
                 if(!ocI.isEnabled || !ocF.isEnabled) continue; //使用されていないものは処理しない
 
-                //Debug.Log("["+i+","+f+"]:------------------------------------------------");
                 //距離
                 Vector3 vec = ships[f].position - ships[i].position;
                 float dis_sqrt = (vec.x * vec.x + vec.y * vec.y + vec.z * vec.z); //処理(sqrt)
-                if(dis_sqrt  < (ocI.getAttackRange + ocF.getDefenseRange) * (ocI.getAttackRange + ocF.getDefenseRange)) {
-                    //勝敗判定
+
+                //逆転判定
+                if(dis_sqrt < (ocI.getReverseRange + ocF.getDefenseRange) * (ocI.getReverseRange + ocF.getDefenseRange)) {
                     int val = ocF.getPower - ocI.getPower;
-                    Debug.Log("["+i+","+f+"]:hit");
-                    //Debug.Log("["+i+","+f+"]:vec:" + vec);
-                    //Debug.Log("["+i+","+f+"]:dir:" + dis_sqrt + " < " + ((ocI.getAttackRange + ocF.getDefenseRange) * (ocI.getAttackRange + ocF.getDefenseRange)));
-                    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -勝ち 
-                    if(val < 0) {
+                    Debug.Log("["+i+","+f+"]:ReverseHit");
+                    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - Iが逆転勝ち 
+                    if((ocI.getPower % 3) == ((ocF.getPower + 1) % 3)) {
                         Debug.Log("Win: " +  ocI.name);
                         ocI.BattleWin();
                         ocF.BattleLoss();
                         return;
                     }
+                }
 
-                    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -まけ 
-                    if(0 < val) {
-                        Debug.Log("Miss: " +  ocI.name);
+                //正規勝敗判定
+                if(dis_sqrt < (ocI.getAttackRange + ocF.getDefenseRange) * (ocI.getAttackRange + ocF.getDefenseRange)) {
+                    int val = ocF.getPower - ocI.getPower;
+                    Debug.Log("["+i+","+f+"]:Hit");
+                    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -Iがまけ 
+                    if((ocI.getPower % 3) == ((ocF.getPower + 1) % 3)) {
+                        Debug.Log("Win: " +  ocF.name);
+                        ocI.BattleLoss();
+                        ocF.BattleWin();
+                        return;
                     }
                     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -あいこ
-                    if(val == 0) {
+                    if((ocI.getPower % 3) == ocF.getPower) {
                         Debug.Log("DrawGame: ");
                         ocI.BattleDraw();
                         ocF.BattleDraw();
@@ -65,7 +72,8 @@ public class ObjectMrg : MonoBehaviour {
         }
 
     }// end function Judge
-
+    
+    //クリア=======================================================================================
     public void Clear() {
         for(int i=0; i < SHIP_MAX; i++) {
             ships[i].GetComponent<ObjectCollider>().Clear();

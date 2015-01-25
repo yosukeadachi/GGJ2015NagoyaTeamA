@@ -3,11 +3,12 @@ using System.Collections;
 
 public class ObjectCollider : MonoBehaviour {
 
+    //power 0=グー : 1=チョキ : 2=パー
     [SerializeField] private int   m_power = 5;   //強さ
-    [SerializeField] private float m_AttackRange  = 0.5f; //攻撃判定の半径
-    [SerializeField] private float m_DefenseRange = 0.5f; //受け判定の半径
+    [SerializeField] private float m_AttackRange   = 2.0f; //攻撃判定の半径
+    [SerializeField] private float m_ReverseRange  = 0.8f; //逆転判定の半径
+    [SerializeField] private float m_DefenseRange  = 0.5f; //受け判定の半径
     
-
     private Color    M_FAST_COLOR;
     private Renderer m_ChildRend; //子のレンダラー
 
@@ -17,13 +18,13 @@ public class ObjectCollider : MonoBehaviour {
     private ParticleSystem m_ChildPar_Win;
     private ParticleSystem m_ChildPar_Los;
 
-
     public Vector2 setPos{ set{ transform.position = value; } }
-    public int   getPower{ get{ return m_power;  } }  
-    public int   setPower{ set{ m_power = value; } }
+    public int     getPower{ get{ return m_power;  } }  
+    public int     setPower{ set{ m_power = value; } }
 
-    public float getAttackRange { get{ return m_AttackRange;  } }  
-    public float getDefenseRange{ get{ return m_DefenseRange; } }
+    public float getAttackRange  { get{ return m_AttackRange;   } }  
+    public float getReverseRange { get{ return m_ReverseRange;  } }  
+    public float getDefenseRange { get{ return m_DefenseRange;  } }
 
     public bool  isEnabled{ get{ return m_ChildRend.enabled; } }
 
@@ -92,6 +93,8 @@ public class ObjectCollider : MonoBehaviour {
     void OnDrawGizmos() {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, m_AttackRange);
+        Gizmos.color = Color.magenta;
+        Gizmos.DrawWireSphere(transform.position, m_ReverseRange);
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(transform.position, m_DefenseRange);
     
