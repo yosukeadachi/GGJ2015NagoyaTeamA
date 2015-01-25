@@ -38,20 +38,18 @@ public class ObjectMrg : MonoBehaviour {
 
                 //逆転判定
                 if(dis_sqrt < (ocI.getReverseRange + ocF.getDefenseRange) * (ocI.getReverseRange + ocF.getDefenseRange)) {
-                    int val = ocF.getPower - ocI.getPower;
                     Debug.Log("["+i+","+f+"]:ReverseHit");
                     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - Iが逆転勝ち 
                     if((ocI.getPower % 3) == ((ocF.getPower + 1) % 3)) {
-                        Debug.Log("Win: " +  ocI.name);
-                        ocI.BattleWin();
-                        ocF.BattleLoss();
+                        Debug.Log("ReverseWin: " +  ocI.name);
+                        ocI.BattleReverseWin();
+                        ocF.BattleReverseLoss();
                         return;
                     }
                 }
 
                 //正規勝敗判定
                 if(dis_sqrt < (ocI.getAttackRange + ocF.getDefenseRange) * (ocI.getAttackRange + ocF.getDefenseRange)) {
-                    int val = ocF.getPower - ocI.getPower;
                     Debug.Log("["+i+","+f+"]:Hit");
                     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -Iがまけ 
                     if((ocI.getPower % 3) == ((ocF.getPower + 1) % 3)) {
